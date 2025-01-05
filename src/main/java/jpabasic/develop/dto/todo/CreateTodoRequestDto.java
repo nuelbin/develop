@@ -3,7 +3,7 @@ package jpabasic.develop.dto.todo;
 import lombok.Getter;
 
 @Getter
-public class CreatTodoRequestDto {
+public class CreateTodoRequestDto {
 
     private String todoTitle;
     private String todoContents;
