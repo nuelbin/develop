@@ -6,6 +6,6 @@ import lombok.Getter;
 public class CreatTodoRequestDto {
 
     private String todoTitle;
-    private String
+    private String todoContents;
 
 }
