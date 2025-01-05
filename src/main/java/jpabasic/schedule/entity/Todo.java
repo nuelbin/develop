@@ -1,7 +1,8 @@
-package jpabasic.develop.entity;
+package jpabasic.schedule.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
@@ -30,7 +31,7 @@ public class Todo {
     //생성 시간
     @CreatedDate
     @Column(updatable = false) // 생성 시간은 수정될 일이 없으므로 false
-    private LocalDateTime creatTodoAt;
+    private LocalDateTime createTodoAt;
 
     //수정 시간
     @LastModifiedDate
@@ -40,4 +41,12 @@ public class Todo {
     @ManyToOne
     @JoinColumn(name = "userId")
     private User user;
+
+    @Builder
+    public Todo(User user, String todoTitle, String todoContents) {
+        this.user = user;
+        this.todoTitle = todoTitle;
+        this.todoContents = todoContents;
+    }
 }
+

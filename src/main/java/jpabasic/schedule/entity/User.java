@@ -1,4 +1,4 @@
-package jpabasic.develop.entity;
+package jpabasic.schedule.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;

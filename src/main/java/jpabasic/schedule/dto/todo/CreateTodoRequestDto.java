@@ -1,4 +1,4 @@
-package jpabasic.develop.dto.todo;
+package jpabasic.schedule.dto.todo;
 
 import lombok.Getter;
 
@@ -7,5 +7,6 @@ public class CreateTodoRequestDto {
 
     private String todoTitle;
     private String todoContents;
+
 
 }

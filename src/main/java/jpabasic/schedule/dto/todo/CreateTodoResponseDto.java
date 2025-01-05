@@ -1,4 +1,4 @@
-package jpabasic.develop.dto.todo;
+package jpabasic.schedule.dto.todo;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -11,8 +11,7 @@ public class CreateTodoResponseDto {
 
     private final String todoTitle;
     private final String todoContents;
-    private final String userName;
-    private final LocalDateTime updateTodoAt;
-
+//    private final String userName;
+    private final LocalDateTime createTodoAt;
 
 }
