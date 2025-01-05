@@ -42,7 +42,9 @@ public class TodoController {
     public ResponseEntity<ApiResponse<UpdateTodoResponseDto>> updatedTodo(
             @PathVariable(name = "todoId") Long todoId,
             @RequestBody UpdateTodoRequestDto updateTodoRequest) {
+
         UpdateTodoResponseDto updateTodoResponse = todoService.updatePost(todoId, updateTodoRequest);
+
         return ResponseEntity.ok(
                 ApiResponse.success(200, "일정 수정 성공", updateTodoResponse));
     }
@@ -51,7 +53,9 @@ public class TodoController {
     @DeleteMapping("/{todoId}")
     public ResponseEntity<ApiResponse<Void>> deletedTodo(
             @PathVariable(name = "todoId") Long TodoId) {
+
         todoService.deleteTodo(TodoId);
+
         return ResponseEntity.ok(
                 ApiResponse.success(200, "일정 삭제 성공", null));
     }

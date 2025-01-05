@@ -2,7 +2,6 @@ package jpabasic.schedule.service;
 
 import jpabasic.schedule.dto.todo.*;
 import jpabasic.schedule.entity.Todo;
-import jpabasic.schedule.exception.ResponseCode;
 import jpabasic.schedule.repository.TodoRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -25,6 +24,7 @@ public class TodoService {
         return CreateTodoResponseDto.builder()
                 .todoTitle(saveTodo.getTodoTitle())
                 .todoContents(saveTodo.getTodoContents())
+                .createTodoAt(saveTodo.getCreateTodoAt())
                 .build();
     }
 
