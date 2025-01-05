@@ -1,9 +1,9 @@
 package jpabasic.schedule.controller;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import jpabasic.schedule.dto.ApiResponse;
-import jpabasic.schedule.dto.todo.CreateTodoRequestDto;
-import jpabasic.schedule.dto.todo.CreateTodoResponseDto;
-import jpabasic.schedule.dto.todo.FindTodoByIdResponseDto;
+import jpabasic.schedule.dto.todo.*;
 import jpabasic.schedule.service.TodoService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -37,5 +37,22 @@ public class TodoController {
                 ApiResponse.success(200, "할 일 단건 조회 성공", todoService.findPostByPostId(todoId)));
     }
 
+    // 일정 수정 API
+    @PatchMapping("/{todoId}")
+    public ResponseEntity<ApiResponse<UpdateTodoResponseDto>> updatedTodo(
+            @PathVariable(name = "todoId") Long todoId,
+            @RequestBody UpdateTodoRequestDto updateTodoRequest) {
+        UpdateTodoResponseDto updateTodoResponse = todoService.updatePost(todoId, updateTodoRequest);
+        return ResponseEntity.ok(
+                ApiResponse.success(200, "일정 수정 성공", updateTodoResponse));
+    }
 
+    // 일정 삭제 API
+    @DeleteMapping("/{todoId}")
+    public ResponseEntity<ApiResponse<Void>> deletedTodo(
+            @PathVariable(name = "todoId") Long TodoId) {
+        todoService.deleteTodo(TodoId);
+        return ResponseEntity.ok(
+                ApiResponse.success(200, "일정 삭제 성공", null));
+    }
 }

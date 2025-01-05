@@ -48,5 +48,10 @@ public class Todo {
         this.todoTitle = todoTitle;
         this.todoContents = todoContents;
     }
+
+    public void updateTodo(String todoTitle, String todoContents) {
+        this.todoTitle = todoTitle;
+        this.todoContents = todoContents;
+    }
 }
 

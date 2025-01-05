@@ -9,11 +9,10 @@ import java.time.LocalDateTime;
 @Getter
 @Builder
 @RequiredArgsConstructor
-public class CreateTodoResponseDto {
+public class UpdateTodoResponseDto {
 
     private final String todoTitle;
     private final String todoContents;
-//    private final String userName;
-    private final LocalDateTime createTodoAt;
+    private final LocalDateTime updateTodoAt;
 
 }

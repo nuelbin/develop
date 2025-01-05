@@ -1,9 +1,8 @@
 package jpabasic.schedule.service;
 
-import jpabasic.schedule.dto.todo.CreateTodoRequestDto;
-import jpabasic.schedule.dto.todo.CreateTodoResponseDto;
-import jpabasic.schedule.dto.todo.FindTodoByIdResponseDto;
+import jpabasic.schedule.dto.todo.*;
 import jpabasic.schedule.entity.Todo;
+import jpabasic.schedule.exception.ResponseCode;
 import jpabasic.schedule.repository.TodoRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -13,23 +12,45 @@ import org.springframework.stereotype.Service;
 public class TodoService {
     private final TodoRepository todoRepository;
 
-    //할 일 생성
+    // 일정 생성
     public CreateTodoResponseDto createTodo(CreateTodoRequestDto todoRequestDto) {
+
         Todo todo = Todo.builder()
                 .todoTitle(todoRequestDto.getTodoTitle())
                 .todoContents(todoRequestDto.getTodoContents())
                 .build();
+
         Todo saveTodo = todoRepository.save(todo);
-        return new CreateTodoResponseDto(
-                saveTodo.getTodoTitle(),
-                saveTodo.getTodoContents(),
-                saveTodo.getUpdateTodoAt()
-        );
+
+        return CreateTodoResponseDto.builder()
+                .todoTitle(saveTodo.getTodoTitle())
+                .todoContents(saveTodo.getTodoContents())
+                .build();
     }
 
-    //할 일 아이디 값 조회
+    // 일정 아이디 값 조회
     public FindTodoByIdResponseDto findPostByPostId(Long todoId) {
         Todo findTodo = todoRepository.findTodoByTodoIdOrElseThrow(todoId);
         return FindTodoByIdResponseDto.GetPostDetailsDto(findTodo);
+    }
+
+    // 일정 수정
+    public UpdateTodoResponseDto updatePost(
+            Long postId, UpdateTodoRequestDto updateTodoRequest) {
+
+        Todo todo = todoRepository.findTodoByTodoIdOrElseThrow(postId);
+        todo.updateTodo(updateTodoRequest.getTodoTitle(), updateTodoRequest.getTodoContents());
+
+        return UpdateTodoResponseDto.builder()
+                .todoTitle(todo.getTodoTitle())
+                .todoContents(todo.getTodoContents())
+                .updateTodoAt(todo.getUpdateTodoAt())
+                .build();
+    }
+
+    //일정 삭제
+    public void deleteTodo(Long todoId) {
+        Todo todo = todoRepository.findTodoByTodoIdOrElseThrow(todoId);
+        todoRepository.deleteById(todoId);
     }
 }
