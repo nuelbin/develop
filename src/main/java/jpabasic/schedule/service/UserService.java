@@ -51,7 +51,7 @@ public class UserService {
         User user = userRepository.findUserByUserIdOrElseThrow(userId);
 
         // 회원 탈퇴 요청의 비밀번호가 유저 비밀번호와 일치 하는지 확인
-        if (secessionRequestDto.getUserPassword().equals(user.getUserPassword())) {
+        if (!secessionRequestDto.getUserPassword().equals(user.getUserPassword())) {
             throw new PasswordAuthException(ResponseCode.PASSWORD_MISMATCH);
         }
 

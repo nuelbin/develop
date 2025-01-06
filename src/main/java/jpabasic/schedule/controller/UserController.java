@@ -11,12 +11,13 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/users")
 public class UserController {
 
     private final UserService userService;
 
     //회원 가입 (유저 생성)
-    @PostMapping("/signUp")
+    @PostMapping("/signup")
     public ResponseEntity<APIResponseDto<MessageDto>> signupUser(@RequestBody SignUpRequestDto signUpRequestDto) {
 
         userService.signupUser(signUpRequestDto);

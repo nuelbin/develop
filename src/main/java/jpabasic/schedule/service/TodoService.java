@@ -2,7 +2,9 @@ package jpabasic.schedule.service;
 
 import jpabasic.schedule.dto.todo.*;
 import jpabasic.schedule.entity.Todo;
+import jpabasic.schedule.entity.User;
 import jpabasic.schedule.repository.TodoRepository;
+import jpabasic.schedule.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -10,6 +12,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class TodoService {
     private final TodoRepository todoRepository;
+    private final UserRepository userRepository;
 
     // 일정 생성
     public CreateTodoResponseDto createTodo(CreateTodoRequestDto todoRequestDto) {
